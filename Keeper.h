@@ -34,4 +34,4 @@ private:
     static const std::size_t INITIAL_CAP = 4;
 };
 
-#endif // KEEPER_H
+#endif
