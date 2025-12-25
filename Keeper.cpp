@@ -90,43 +90,40 @@ void Keeper::addObject() {
 
 // Метод удаления объекта по индексу
 void Keeper::removeObject(std::size_t index) {
-    // Проверка корректности индекса
-    if (index >= size_) throw DemoExceptionBadIndex();
-    // Удаляем объект по указанному индексу
+    if (index >= size_) {
+        throw DemoExceptionBadIndex();
+    }
+
     delete items_[index];
-    // Сдвигаем все элементы после удаленного на одну позицию влево
+
+    // сдвиг элементов влево
     for (std::size_t i = index; i + 1 < size_; ++i) {
         items_[i] = items_[i + 1];
     }
-    // Последний элемент обнуляем
-    items_[size_ - 1] = nullptr;
-    // Уменьшаем размер массива
+
     --size_;
 }
 
 // Метод просмотра всех объектов
 void Keeper::viewAll() const {
-    // Если массив пуст, выводим сообщение
     if (size_ == 0) {
-        std::cout << "Нет объектов.\n";
+        std::cout << "Список пуст.\n";
         return;
     }
-    // Итерируем по всем объектам и выводим информацию о каждом
+
     for (std::size_t i = 0; i < size_; ++i) {
-        std::cout << "Объект " << i << ": ";
+        std::cout << i << ": ";
         items_[i]->display();
     }
 }
 
 // Метод редактирования объекта по индексу
 void Keeper::editObject(std::size_t index) {
-    // Проверка корректности индекса
-    if (index >= size_) throw DemoExceptionBadIndex();
-    // Показываем текущие данные объекта
-    std::cout << "Текущие данные:\n";
-    items_[index]->display();
-    // Запрашиваем новые данные
-    std::cout << "Введите новые данные:\n";
+    if (index >= size_) {
+        throw DemoExceptionBadIndex();
+    }
+
+    std::cout << "Редактирование объекта:\n";
     items_[index]->input();
 }
 
